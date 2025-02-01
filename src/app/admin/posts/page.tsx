@@ -1,12 +1,15 @@
 import type { Metadata } from "next/types";
 import PostRow from "@/components/post-row/PostRow";
 import { getPosts } from "@/lib/actions/posts";
+import Table from "@/components/table/Table";
 import Link from "next/link";
 
 export const metadata: Metadata = {
     title: "PostList",
     description: "List of posts stored in database",
 };
+
+const tableHead = [" Post Image", "Title", "Date Updated", "Delete", "Edit"];
 
 const PostsListPage = async () => {
     const posts = await getPosts();
@@ -22,32 +25,16 @@ const PostsListPage = async () => {
                 </nav>
             </div>
             <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
-                <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
-                    <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-                        <tr>
-                            <th scope="col" className="px-6 py-3">
-                                Post Image
-                            </th>
-                            <th scope="col" className="px-6 py-3">
-                                Post Title
-                            </th>
-                            <th scope="col" className="px-6 py-3">
-                                Date Updated
-                            </th>
-                            <th scope="col" className="px-6 py-3">
-                                Delete
-                            </th>
-                            <th scope="col" className="px-6 py-3">
-                                Edit
-                            </th>
-                        </tr>
-                    </thead>
+                <Table tableHead={tableHead}>
                     <tbody>
                         {posts.map((post) => (
-                            <PostRow key={post.id} post={post} />
+                            <PostRow
+                                key={post.id}
+                                postStringified={JSON.stringify(post)}
+                            />
                         ))}
                     </tbody>
-                </table>
+                </Table>
             </div>
         </>
     );

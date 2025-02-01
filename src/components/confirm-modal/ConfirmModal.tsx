@@ -24,7 +24,7 @@ const ConfirmModal = ({ open, title, onClose, onConfirm }) => {
                         <h3 className="mb-5 text-lg font-normal text-gray-500 dark:text-gray-400">
                             Are you sure you want to delete{" ' "}
                             <em>{title || "unknown"}</em>
-                            {" '"} post?
+                            {" '"} row?
                         </h3>
                         <button
                             type="button"
