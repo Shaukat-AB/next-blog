@@ -13,3 +13,12 @@ export const getUsers = async () => {
         throw new Error("Users Fetch failed");
     }
 };
+
+export const deleteUser = async (id) => {
+    try {
+        const savedPost = await User.findByIdAndDelete(id);
+    } catch (err) {
+        console.log("deleteUser Error: ", err);
+        throw new Error("Delete user failed");
+    }
+};
