@@ -36,7 +36,7 @@ const PostPage = async ({ params }: { params: Promise<{ id: string }> }) => {
             <main>
                 <figure className="relative w-full h-96">
                     <Image
-                        className="object-cover py-8"
+                        className="object-scale-down py-8"
                         src={post?.image || "/images/placeholder.jpg"}
                         sizes="1024px"
                         alt={post.title}
