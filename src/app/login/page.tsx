@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 const LoginPage = () => {
     return (
         <div className="flex flex-col">
-            <h2 className="font-medium text-xl text-center">Sign in to Blog</h2>
+            <h1 className="font-medium text-xl text-center">Sign in to Blog</h1>
             <LoginForm />
             <div className="max-w-md mx-auto">
                 <button

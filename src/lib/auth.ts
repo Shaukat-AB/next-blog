@@ -22,23 +22,6 @@ export const { auth, handlers, signIn, signOut } = NextAuth({
             },
         }),
     ],
-
-    //     Credentials({
-    //         authorize: async (credentials) => {
-    //             // if (!credentials?.email || !credentials.password) {
-    //             //     return null;
-    //             // }
-    //             console.log(credentials, "credentials");
-    //             const user = await handleAuthorize(credentials);
-
-    //             if (!user) {
-    //                 return null;
-    //             }
-    //             return user;
-    //         },
-    //     }),
-    //     ,
-    // ],
     callbacks: {
         async signIn({ user, account, profile, credentials }) {
             if (account.provider === "google") {

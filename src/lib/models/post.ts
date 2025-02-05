@@ -21,7 +21,6 @@ const postSchema = new mongoose.Schema<any>(
         content: {
             type: String,
             required: true,
-            // min: 180,
         },
     },
     { timestamps: true }

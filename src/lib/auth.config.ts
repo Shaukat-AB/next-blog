@@ -19,7 +19,6 @@ export const authConfig = {
         async authorized({ auth, request }) {
             const path = request?.nextUrl.pathname;
             const user = auth?.user;
-            // console.log(user, path);
 
             // Redirect to home page when user loggedin and visits login or register page
             if (user && (path.includes("login") || path.includes("register"))) {
