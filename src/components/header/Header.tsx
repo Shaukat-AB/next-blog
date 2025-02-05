@@ -8,7 +8,7 @@ const Header = async () => {
 
     return (
         <header>
-            <div className="h-[100px] flex flex-wrap items-center justify-between mx-auto p-6">
+            <div className="h-[100px] flex flex-wrap items-center justify-between mx-auto px-6 mb-6">
                 <Link href="/" className="font-semibold">
                     Blog.
                 </Link>
