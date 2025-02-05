@@ -2,7 +2,11 @@ import Image from "next/image";
 import { getPostById } from "@/lib/actions/posts";
 import PostContent from "@/components/post-content/PostContent";
 
-export const generateMetadata = async ({ params }) => {
+export const generateMetadata = async ({
+    params,
+}: {
+    params: Promise<{ id: string }>;
+}) => {
     const { id } = await params;
     const post = await getPostById(id);
 
@@ -12,7 +16,7 @@ export const generateMetadata = async ({ params }) => {
     };
 };
 
-const PostPage = async ({ params }) => {
+const PostPage = async ({ params }: { params: Promise<{ id: string }> }) => {
     const { id } = await params;
     const post = await getPostById(id);
     if (!post) return;
@@ -21,9 +25,7 @@ const PostPage = async ({ params }) => {
     return (
         <article>
             <header className="mb-10">
-                <h1 className="main-title">
-                    {post.title}
-                </h1>
+                <h1 className="main-title">{post.title}</h1>
                 <p className="text-base text-gray-500 dark:text-gray-400">
                     {post?.updatedAt && (
                         <time dateTime={updatedAt}>{updatedAt}</time>

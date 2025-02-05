@@ -7,7 +7,11 @@ export const metadata: Metadata = {
     description: "Edit post for blog app",
 };
 
-const EditPostPage = async ({ params }) => {
+const EditPostPage = async ({
+    params,
+}: {
+    params: Promise<{ id: string }>;
+}) => {
     const { id } = await params;
     const post = await getPostById(id);
 
@@ -16,7 +20,7 @@ const EditPostPage = async ({ params }) => {
     return (
         <div className="flex flex-col">
             <h2 className="font-medium text-xl text-center">Edit post</h2>
-            <EditPostForm postString={JSON.stringify({id, post})} />
+            <EditPostForm postString={JSON.stringify({ id, post })} />
         </div>
     );
 };
