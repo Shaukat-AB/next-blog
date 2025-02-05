@@ -34,7 +34,6 @@ const inputGroups = [
             placeholder: "https://www.domain-name.image-name.jpg",
             type: "text",
             minLength: 5,
-            maxLength: 60,
         },
     },
 ];
