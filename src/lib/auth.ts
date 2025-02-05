@@ -1,4 +1,4 @@
-import NextAuth from "next-auth";
+import NextAuth, { User as DefaultUser } from "next-auth";
 import Google from "next-auth/providers/google";
 import Credentials from "next-auth/providers/credentials";
 import { User } from "./models/user";
@@ -14,7 +14,9 @@ export const { auth, handlers, signIn, signOut } = NextAuth({
         }),
         Credentials({
             async authorize(credentials, request) {
-                const user = await User.findOne({ email: credentials.email });
+                const user: DefaultUser | null = await User.findOne({
+                    email: credentials.email,
+                });
                 if (user) {
                     return user;
                 }
@@ -24,11 +26,11 @@ export const { auth, handlers, signIn, signOut } = NextAuth({
     ],
     callbacks: {
         async signIn({ user, account, profile, credentials }) {
-            if (account.provider === "google") {
+            if (account?.provider === "google") {
                 connnectToDb();
                 try {
                     const savedUser = await User.findOne({
-                        email: profile.email,
+                        email: profile?.email,
                     });
                     if (savedUser) {
                         return true;
@@ -36,9 +38,9 @@ export const { auth, handlers, signIn, signOut } = NextAuth({
 
                     // Save new user to database
                     const newUser = new User({
-                        name: profile.name,
-                        email: profile.email,
-                        image: profile.image,
+                        name: profile?.name,
+                        email: profile?.email,
+                        image: profile?.image,
                     });
                     await newUser.save();
                 } catch (err) {

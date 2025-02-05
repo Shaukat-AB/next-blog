@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { getPostById } from "@/lib/actions/posts";
 import PostContent from "@/components/post-content/PostContent";
+import { createDate } from "@/lib/utils";
 
 export const generateMetadata = async ({
     params,
@@ -20,7 +21,7 @@ const PostPage = async ({ params }: { params: Promise<{ id: string }> }) => {
     const { id } = await params;
     const post = await getPostById(id);
     if (!post) return;
-    const updatedAt = new Date(post?.updatedAt).toISOString().substring(0, 10);
+    const updatedAt = createDate(post?.updatedAt);
 
     return (
         <article>

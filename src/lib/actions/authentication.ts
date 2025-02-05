@@ -25,14 +25,16 @@ export const handleLogin = async (state: Object, formData: FormData) => {
         if (!savedUser) {
             return { message: "Wrong email or password" };
         }
-
-        const passwordMatched = await bcrypt.compare(
-            password,
-            savedUser.password
-        );
-        if (!passwordMatched) {
-            return { message: "Wrong email or password" };
+        if (savedUser.password && typeof savedUser.password == "string") {
+            const passwordMatched = await bcrypt.compare(
+                password,
+                savedUser.password
+            );
+            if (!passwordMatched) {
+                return { message: "Wrong email or password" };
+            }
         }
+
         await signIn("credentials", { email, password, redirectTo: "/" });
     } catch (err) {
         console.log("Login action err: ", err);

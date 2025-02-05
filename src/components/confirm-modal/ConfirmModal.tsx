@@ -1,6 +1,16 @@
 import { Cancel, ConfirmAttention } from "@/lib/icons";
 
-const ConfirmModal = ({ open, title, onClose, onConfirm }) => {
+const ConfirmModal = ({
+    open,
+    title,
+    onClose,
+    onConfirm,
+}: {
+    open: boolean;
+    title: string;
+    onClose: () => void;
+    onConfirm: () => void;
+}) => {
     return (
         <div
             tabIndex={-1}

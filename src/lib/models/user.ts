@@ -1,6 +1,7 @@
-import mongoose from "mongoose";
+import { TUser } from "@/types";
+import mongoose, { Model } from "mongoose";
 
-const userSchema = new mongoose.Schema<any>(
+const userSchema = new mongoose.Schema<TUser>(
     {
         name: {
             type: String,
@@ -32,4 +33,5 @@ const userSchema = new mongoose.Schema<any>(
     { timestamps: true }
 );
 
-export const User = mongoose.models.User || mongoose.model("User", userSchema);
+export const User: Model<TUser> =
+    mongoose.models.User || mongoose.model<TUser>("User", userSchema);

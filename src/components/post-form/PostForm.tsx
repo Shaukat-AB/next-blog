@@ -38,7 +38,15 @@ const inputGroups = [
     },
 ];
 
-const PostForm = ({ postAction, postState = [], contentState = [] }) => {
+const PostForm = ({
+    postAction,
+    postState,
+    contentState,
+}: {
+    postAction: any;
+    postState: [any, (post: any) => void];
+    contentState: [string, (content: string) => void];
+}) => {
     const [state, action, pending] = useActionState(postAction, {
         message: "",
     });

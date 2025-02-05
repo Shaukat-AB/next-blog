@@ -5,7 +5,7 @@ import "react-quill-new/dist/quill.snow.css";
 const ReactQuill = dynamic(() => import("react-quill-new"), { ssr: false });
 
 type PostEditorProps = {
-    contentState: [content: String, setContent: Function];
+    contentState: [content: string, setContent: Function];
 };
 
 const PostEditor: React.FC<PostEditorProps> = ({ contentState }) => {
@@ -15,9 +15,9 @@ const PostEditor: React.FC<PostEditorProps> = ({ contentState }) => {
         value: string,
         delta: DeltaStatic,
         source: EmitterSource,
-        editor: Object
+        editor: { getSemanticHTML: () => string }
     ) => {
-        var html: String = editor.getSemanticHTML();
+        var html: string = editor.getSemanticHTML();
         setContent(html.replaceAll("&nbsp;", " "));
     };
 

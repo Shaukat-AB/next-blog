@@ -5,14 +5,13 @@ import ConfirmModal from "../confirm-modal/ConfirmModal";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { deleteUser } from "@/lib/actions/users";
+import { createDate } from "@/lib/utils";
 
-const UserRow = ({ userStringified }) => {
+const UserRow = ({ userStringified }: { userStringified: string }) => {
     const user = JSON.parse(userStringified);
-    const [open, setOpen] = useState<Boolean>(false);
+    const [open, setOpen] = useState<boolean>(false);
     const router = useRouter();
-    const updatedAt = user?.updatedAt
-        ? new Date(user.updatedAt).toISOString().substring(0, 10)
-        : "";
+    const updatedAt = createDate(user?.updatedAt);
 
     const handleDeleteUser = async () => {
         await deleteUser(user._id);

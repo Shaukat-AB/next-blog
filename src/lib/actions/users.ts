@@ -14,7 +14,7 @@ export const getUsers = async () => {
     }
 };
 
-export const deleteUser = async (id) => {
+export const deleteUser = async (id: string) => {
     try {
         const savedPost = await User.findByIdAndDelete(id);
     } catch (err) {

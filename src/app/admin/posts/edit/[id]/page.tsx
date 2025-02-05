@@ -20,7 +20,7 @@ const EditPostPage = async ({
     return (
         <div className="flex flex-col">
             <h2 className="font-medium text-xl text-center">Edit post</h2>
-            <EditPostForm postString={JSON.stringify({ id, post })} />
+            <EditPostForm postStringified={JSON.stringify({ id, post })} />
         </div>
     );
 };

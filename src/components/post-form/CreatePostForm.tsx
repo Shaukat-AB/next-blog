@@ -5,7 +5,7 @@ import { useState } from "react";
 import PostForm from "./PostForm";
 
 const CreatePostForm = () => {
-    const [content, setContent] = useState<String>("");
+    const [content, setContent] = useState<string>("");
     const [post, setPost] = useState({
         id: "",
         title: "",

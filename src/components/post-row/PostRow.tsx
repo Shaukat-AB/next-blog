@@ -7,9 +7,9 @@ import { deletePost } from "@/lib/actions/posts";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 
-const PostRow = ({ postStringified }) => {
+const PostRow = ({ postStringified }: { postStringified: string }) => {
     const post = JSON.parse(postStringified);
-    const [open, setOpen] = useState<Boolean>(false);
+    const [open, setOpen] = useState<boolean>(false);
     const router = useRouter();
     const updatedAt = new Date(post.updatedAt).toISOString().substring(0, 10);
 

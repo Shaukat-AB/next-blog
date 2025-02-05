@@ -4,8 +4,8 @@ import { updatePost } from "@/lib/actions/posts";
 import { useEffect, useState } from "react";
 import PostForm from "./PostForm";
 
-const EditPostForm = ({ postString }) => {
-    const [content, setContent] = useState<String>("");
+const EditPostForm = ({ postStringified }: { postStringified: string }) => {
+    const [content, setContent] = useState<string>("");
     const [post, setPost] = useState({
         id: "",
         title: "",
@@ -17,13 +17,13 @@ const EditPostForm = ({ postString }) => {
 
     useEffect(() => {
         const getPost = async () => {
-            const parsedPost = await JSON.parse(postString);
+            const parsedPost = await JSON.parse(postStringified);
             if (!parsedPost?.post) return;
             setPost({ ...parsedPost.post, id: parsedPost.id });
             setContent(parsedPost.post.content);
         };
         getPost();
-    }, [postString]);
+    }, [postStringified]);
     return (
         <PostForm
             postAction={modifiedUpdatePost}

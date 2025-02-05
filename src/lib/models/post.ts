@@ -1,6 +1,7 @@
-import mongoose from "mongoose";
+import { TPost } from "@/types";
+import mongoose, { Model } from "mongoose";
 
-const postSchema = new mongoose.Schema<any>(
+const postSchema = new mongoose.Schema<TPost>(
     {
         title: {
             type: String,
@@ -26,5 +27,5 @@ const postSchema = new mongoose.Schema<any>(
     { timestamps: true }
 );
 
-
-export const Post = mongoose.models.Post || mongoose.model("Post", postSchema);
+export const Post: Model<TPost> =
+    mongoose.models.Post || mongoose.model<TPost>("Post", postSchema);

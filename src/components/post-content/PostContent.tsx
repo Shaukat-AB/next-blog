@@ -1,8 +1,8 @@
 // "use client";
 import DOMPurify from "isomorphic-dompurify";
 
-const PostContent = ({ content }) => {
-    const cleanContent = DOMPurify.sanitize(content);
+const PostContent = ({ content }: { content: string | undefined }) => {
+    const cleanContent = content ? DOMPurify.sanitize(content) : "";
 
     return (
         <div

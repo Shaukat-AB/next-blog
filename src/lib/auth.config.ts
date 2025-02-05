@@ -1,22 +1,32 @@
-export const authConfig = {
+import { NextAuthConfig, Session, User } from "next-auth";
+import { JWT } from "next-auth/jwt";
+import { NextRequest } from "next/server";
+
+export const authConfig: NextAuthConfig = {
     pages: {
         signIn: "/login",
     },
     providers: [], // Defined in auth file
     callbacks: {
-        async jwt({ token, user }) {
+        async jwt({ token, user }: { token: JWT; user: User }) {
             if (user) {
                 token.user = { id: user.id, isAdmin: user.isAdmin };
             }
             return token;
         },
-        async session({ session, token }) {
-            if (token) {
+        async session({ session, token }: { session: any; token: JWT }) {
+            if (token?.user) {
                 session.user = { ...session.user, ...token.user };
             }
             return session;
         },
-        async authorized({ auth, request }) {
+        async authorized({
+            auth,
+            request,
+        }: {
+            auth: Session | null;
+            request: NextRequest;
+        }) {
             const path = request?.nextUrl.pathname;
             const user = auth?.user;
 

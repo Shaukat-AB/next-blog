@@ -58,7 +58,7 @@ export const createPost = async (
     }
 };
 
-export const deletePost = async (id) => {
+export const deletePost = async (id: string) => {
     try {
         const savedPost = await Post.findByIdAndDelete(id);
     } catch (err) {
@@ -74,8 +74,7 @@ export const updatePost = async (
     formData: FormData
 ) => {
     const { title, description, image } = Object.fromEntries(formData);
-    
-    
+
     //Validation
 
     if (!title || !content || !description) {
@@ -103,7 +102,6 @@ export const updatePost = async (
         if (!savedPost) {
             return { message: "Post do not exists" };
         }
-
     } catch (err) {
         console.log("updatePost Error: ", err);
         throw new Error("Update post failed");

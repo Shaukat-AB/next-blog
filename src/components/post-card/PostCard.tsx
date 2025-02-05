@@ -1,7 +1,8 @@
 import Link from "next/link";
 import Image from "next/image";
+import { TPost } from "@/types";
 
-const PostCard = ({ post }) => {
+const PostCard = ({ post }: { post: TPost }) => {
     return (
         <div className="w-full mb-12">
             <Link
